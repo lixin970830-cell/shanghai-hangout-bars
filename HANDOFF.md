@@ -33,6 +33,18 @@ GitHub Pages 发布方式：
 Settings -> Pages -> Deploy from a branch -> main / docs
 ```
 
+GitHub 仓库：
+
+```txt
+https://github.com/lixin970830-cell/shanghai-hangout-bars
+```
+
+公开网站：
+
+```txt
+https://lixin970830-cell.github.io/shanghai-hangout-bars/
+```
+
 如果新开对话后本地服务没了，可以在项目目录运行：
 
 ```bash
@@ -122,7 +134,10 @@ http://127.0.0.1:5175/static.html
 - 新增 `.gitignore`
 - 新增 `README.md`
 - 新增 `docs/index.html` 和 `docs/404.html`，用于 GitHub Pages
-- 当前机器 `gh` 已安装，但尚未登录 GitHub，需要先完成 `gh auth login`
+- 已登录 GitHub 账号 `lixin970830-cell`
+- 已创建公开仓库 `lixin970830-cell/shanghai-hangout-bars`
+- 已开启 GitHub Pages，发布源为 `main /docs`
+- 已验证公开网站返回 200，移动端渲染正常
 
 ## 新对话可直接使用的提示词
 

@@ -2,6 +2,10 @@
 
 适合聊天、约会、续摊和下班小喝的上海酒吧精选清单。
 
+Live site:
+
+https://lixin970830-cell.github.io/shanghai-hangout-bars/
+
 ## Local Preview
 
 ```bash

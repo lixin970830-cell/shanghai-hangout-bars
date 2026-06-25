@@ -407,8 +407,8 @@ function App() {
         </section>
       </header>
 
-      <section className="filters">
-        <div className="filter-toolbar">
+      <section className="filters" aria-label="筛选酒吧">
+        <div className="filter-topline">
           <label className="search">
             <Search size={18} />
             <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索：静安 / rooftop / 好聊天" />
@@ -418,16 +418,32 @@ function App() {
               </button>
             )}
           </label>
-          <button className="reset-btn" type="button" onClick={resetFilters} disabled={!hasActiveFilters}>
-            <RotateCcw size={15} /> 重置
-          </button>
+
+          <div className="compact-controls">
+            <SelectControl label="区域" options={areaOptions} value={area} onChange={setArea} />
+            <SelectControl label="排序" options={sortOptions} value={sortBy} onChange={setSortBy} />
+            <SelectControl label="状态" options={viewOptions} value={view} onChange={setView} />
+            <button className="reset-btn" type="button" onClick={resetFilters} disabled={!hasActiveFilters}>
+              <RotateCcw size={15} /> <span>重置</span>
+            </button>
+          </div>
         </div>
 
-        <div className="filter-grid">
-          <FilterBlock label="场景" options={sceneOptions} value={scene} onChange={setScene} />
-          <FilterBlock label="区域" options={areaOptions} value={area} onChange={setArea} />
-          <FilterBlock label="排序" options={sortOptions} value={sortBy} onChange={setSortBy} />
-          <FilterBlock label="状态" options={viewOptions} value={view} onChange={setView} />
+        <div className="scene-strip">
+          <span>场景</span>
+          <div className="chips scene-chips">
+            {sceneOptions.map((option) => (
+              <button
+                key={option}
+                type="button"
+                className={scene === option ? 'chip active' : 'chip'}
+                aria-pressed={scene === option}
+                onClick={() => setScene(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -512,28 +528,18 @@ function App() {
   );
 }
 
-function FilterBlock({ label, options, value, onChange }) {
+function SelectControl({ label, options, value, onChange }) {
   return (
-    <div className="filter-block">
+    <label className="select-control">
       <span>{label}</span>
-      <div className="chips">
+      <select value={value} onChange={(event) => onChange(event.target.value)}>
         {options.map((option) => {
-          const key = Array.isArray(option) ? option[0] : option;
+          const optionValue = Array.isArray(option) ? option[0] : option;
           const text = Array.isArray(option) ? option[1] : option;
-          return (
-            <button
-              key={key}
-              type="button"
-              className={value === key ? 'chip active' : 'chip'}
-              aria-pressed={value === key}
-              onClick={() => onChange(key)}
-            >
-              {text}
-            </button>
-          );
+          return <option key={optionValue} value={optionValue}>{text}</option>;
         })}
-      </div>
-    </div>
+      </select>
+    </label>
   );
 }
 
